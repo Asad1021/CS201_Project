@@ -131,7 +131,13 @@ node * search(node * x,int arr[],int depth)
         return search(x->right,arr,depth+1);
     }
 }
-
+/*
+node *nearestneighbour(node *root,int arr[])
+{
+    node *temp=search(root,arr,0);
+    
+}
+*/
 int main()
 {
     k=3;
