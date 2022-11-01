@@ -124,8 +124,11 @@ node * search(node * x,int arr[],int depth)
         int isEqual=1;
         for (int i = 0; i < k; i++)
         {
-            if(x->point[depth%k]!=arr[depth%k])
-            isEqual=0;
+            if(x->point[i]!=arr[i])
+            {
+                isEqual=0;
+                break;
+            }
         }
 
         if(isEqual)
@@ -133,9 +136,8 @@ node * search(node * x,int arr[],int depth)
 
         else 
         return search(x->left,arr,depth+1);
-        
-
     }
+
     else if(x->point[depth%k]>arr[depth%k])
     {
         return search(x->left,arr,depth+1);
@@ -326,6 +328,7 @@ int main()
             if(count)
             {
                 fscanf(file,"%d",&k);
+                count = 0 ;
             }
 
             else 
