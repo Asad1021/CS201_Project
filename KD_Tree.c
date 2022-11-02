@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<math.h>
 int k=1;
+double min_dis=INFINITY;
 
 typedef struct Node{
     int *point;
@@ -9,6 +10,9 @@ typedef struct Node{
 
 
 }node;
+
+node *neart=NULL;
+
 
 double dist(int point1[],int point2[])
 {
@@ -149,64 +153,40 @@ node * search(node * x,int arr[],int depth)
     }
 }
 
-node * nearsetneighbour(node * x,int point[],int d)
+
+void nearsetneighbour(node * x,int source[],int d)
 {
     if(x==NULL)
-    return NULL;
+        return;
     
-    if(point[d%k]>(x->point[d%k]))//right node is the next
+    else if(dist(x->point,source) < min_dis)
     {
-        node * temp2;
-        node * temp = nearsetneighbour(x->right,point,d+1);
-
-        double distance = dist(point,temp->point);
-        double distance2 = x->point[d%k] - point[d%k];
-
-        distance2 = distance2 * distance2;
-
-        if(distance>=distance2)
-        {
-            temp2 = nearsetneighbour(x->left,point,d+1);
-        }
-
-        if(dist(point,temp->point)>dist(point, temp2->point))
-        {
-            return temp2;
-        }
-        else 
-        {
-            return temp;
-        }
-
+        min_dis=dist(x->point,source);
+        neart=x;
+        
+        nearsetneighbour(x->left,source,d+1);
+        nearsetneighbour(x->right,source,d+1); 
     }
-    else //left node is the next
+    else if (min_dis < fabs(x->point[d%k]-source[d%k]))
     {
-        node * temp2=NULL;
-        node * temp = nearsetneighbour(x->left,point,d+1);
-        if(temp==NULL)
-        printf("hell");
-        double distance = dist(point,temp->point);
-        double distance2 = x->point[d%k] - point[d%k];
-
-        distance2 = distance2*distance2;
-
-        if(distance>=distance2)
+        if ((x->point[d%k]-source[d%k])>0)
         {
-            temp2 = nearsetneighbour(x->right,point,d+1);
+            nearsetneighbour(x->right,source,d+1);
         }
-
-        if(dist(point,temp->point)>dist(point, temp2->point))
+        
+        else
         {
-            return temp2;
-        }
-        else 
-        {
-            return temp;
-        }
-
+            nearsetneighbour(x->left,source,d+1);
+        }     
     }
-
+    
+    else
+    {
+        nearsetneighbour(x->left,source,d+1);
+        nearsetneighbour(x->right,source,d+1);
+    }
 }
+
 
 int main()
 {
@@ -307,6 +287,34 @@ int main()
     
     case 'N':
         {
+            
+            printf("enter the search element : ");
+            int s[k];
+            for (int i = 0; i < k; i++)
+            {
+                scanf("%d",&s[i]);
+            }
+
+            nearsetneighbour(root,s,0);
+            
+            if (neart==NULL)
+            {
+                printf("NULL\n");
+            }
+            else
+            {
+                printf("{");
+                for (int i = 0; i < k; i++)
+                {
+                    printf("%d%s",neart->point[i] , (i<k-1)? "," : "");
+                }
+                printf("}\n");
+            }
+            
+            min_dis=INFINITY;
+            neart=NULL;
+            goto loop;
+        
             goto loop;
         }
     break;
@@ -384,10 +392,6 @@ int main()
     }
         break;
     }
-
-
-
-
 
     
     return 0;
