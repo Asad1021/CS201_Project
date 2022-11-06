@@ -163,8 +163,11 @@ void nearsetneighbour(node * x,int source[],int d)
     
     else if(dist(x->point,source) < min_dis)
     {
-        min_dis=dist(x->point,source);
-        neart=x;
+        if(dist(x->point,source)!=0)
+        {
+            min_dis=dist(x->point,source);
+            neart=x;
+        }
         
         nearsetneighbour(x->left,source,d+1);
         nearsetneighbour(x->right,source,d+1); 
@@ -192,49 +195,6 @@ void nearsetneighbour(node * x,int source[],int d)
 
 int main()
 {
-    // k=3;
-    // int arr[k];
-    // node *root=NULL;
-
-    // for (int i = 0; i < 2 ; i++)
-    // {
-    //     printf("Enter a point");
-    //     for (int j = 0; j < k; j++)
-    //     {
-    //         scanf("%d",&arr[j]);
-    //     }
-
-        // root = insert(root,arr,0);
-        
-    // }
-    
-    // node * temp = nearsetneighbour(root,arr,0);
-
-    // if(temp!=NULL){
-    //     for (int i = 0; i < k; i++)
-    //     {
-    //         printf("%d ", temp->point[i]);
-    //     }
-    // }
-    // else printf("NULL");
-    // printf("\n");
-    // inorder(root);
-//     printf("\n");
-
-//  int i=0;
-//     while(i++<5)
-//    {
-    // printf("enter the search element : ");
-    // int s[k];
-    // for (int i = 0; i < k; i++)
-    // {
-    //     scanf("%d",&s[i]);
-    // }
-
-    // if((search(root,s,0))!=NULL)
-    // printf("found");
-    // else printf("not found");
-//     }
     char choice;
     node *root=NULL;
     int count=1;
