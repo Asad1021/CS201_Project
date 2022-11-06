@@ -114,6 +114,8 @@ void inorder(node *x)
     }
 
     inorder(x->right);
+    
+    return;
 }
 
 node * search(node * x,int arr[],int depth)
