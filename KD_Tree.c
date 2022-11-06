@@ -25,7 +25,7 @@ double dist(int point1[],int point2[])
 
     // distance=sqrt(distance);
 
-    return distance;   
+    return sqrt(distance);   
 
 }
 
@@ -61,7 +61,7 @@ int deapth(node *x)
 
 }
 
-node * insert(node *x,int point[],int deapth)
+node * insert(node *x,int point[],int depth)
 {
     if(x==NULL)
     {
@@ -83,14 +83,14 @@ node * insert(node *x,int point[],int deapth)
         
     }
 
-    if(( point[deapth%k] )>( x->point[deapth%k] ))
+    if(( point[depth%k] )>( x->point[depth%k] ))
     {
-        x->right=insert(x->right,point,deapth+1);
+        x->right=insert(x->right,point,depth+1);
     }
 
     else
     {
-        x->left=insert(x->left,point,deapth+1);
+        x->left=insert(x->left,point,depth+1);
     }
     return x;
 }
@@ -313,8 +313,6 @@ int main()
             
             min_dis=INFINITY;
             neart=NULL;
-            goto loop;
-        
             goto loop;
         }
     break;
