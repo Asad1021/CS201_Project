@@ -1,11 +1,11 @@
-# K-D Tree and Nearest Neighbour Finding
-# TA : Akanksha
-# Team Number : 21
-# Team Members:
-# Asad Alam           2021CSB1271
-# Shiva Koshta       2021CSB1132
-# Sushil Kumar      2021CSB1136
-#
+## K-D Tree and Nearest Neighbour Finding
+ TA : Akanksha
+ Team Number : 21
+ Team Members:
+ Asad Alam           2021CSB1271
+ Shiva Koshta       2021CSB1132
+ Sushil Kumar      2021CSB1136
+
 # INPUT:-
   We can take input by two ways 
 1. By entering 'I' we can insert data point directly using the console.
